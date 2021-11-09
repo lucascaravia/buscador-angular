@@ -1,0 +1,56 @@
+<div class="container-fluid mt-5">
+  <div class="row">
+    <div class="col-4">
+      <table class="table table-dark table-striped table-hover">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let character of characters">
+            <td>{{ character.char_id }}</td>
+            <td>{{ character.name }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-8">
+      <div class="col-10 mb-3">
+        <input
+          type="text"
+          class="form-control"
+          type="text"
+          placeholder="Buscar personaje"
+          [(ngModel)]="character"
+        />
+      </div>
+      <div class="col-10 mb-3 d-grid gap-2">
+        <button class="btn btn-dark" (click)="submitBtn()">Buscar</button>
+      </div>
+      <div class="col-10 mb-3">
+        <div class="card text-center text-light bg-dark">
+          <div class="card-body" *ngFor="let character of searchResult">
+            <h1 class="mb-3">{{ character.name }}</h1>
+            <img src="{{ character.img }}" class="card-img-top" />
+            <div class="d-grid gap-2">
+              <a
+                routerLink="/characters/{{ character.char_id }}"
+                class="btn btn-warning text-dark mt-3"
+                >Ver mas</a
+              >
+            </div>
+          </div>
+        </div>
+        <div *ngIf="searchResult.length === 0">
+          <div class="card text-center text-light bg-dark">
+            <div class="card-body">
+              <img src="./../../../Breaking_Bad.png" class="card-img-top" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
